@@ -1,0 +1,13 @@
+# Run-time information is local only.
+logs/
+backup.staging/
+backup.previous/
+
+# Never allow common secret material into the backup repository.
+**/.env
+**/*.pem
+**/*.key
+**/*.pfx
+**/*.p12
+**/auth.json
+**/credentials.json
