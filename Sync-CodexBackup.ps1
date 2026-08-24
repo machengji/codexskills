@@ -121,11 +121,22 @@ function Invoke-Git {
         [Parameter(Mandatory = $true)][string[]]$Arguments
     )
 
-    $output = & git -C $Repository @Arguments 2>&1
+    # Git for Windows can emit harmless LF/CRLF notices on stderr. Capture those
+    # notices without letting Windows PowerShell's Stop preference treat them as
+    # terminating errors (the exit code remains the source of truth).
+    $previousErrorActionPreference = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        $output = & git -C $Repository @Arguments 2>&1
+        $exitCode = $LASTEXITCODE
+    }
+    finally {
+        $ErrorActionPreference = $previousErrorActionPreference
+    }
     foreach ($line in $output) {
         Write-Host $line
     }
-    if ($LASTEXITCODE -ne 0) {
+    if ($exitCode -ne 0) {
         throw "Git command failed: git -C `"$Repository`" $($Arguments -join ' ')"
     }
     return @($output)
@@ -185,7 +196,6 @@ try {
 
     $manifest = [ordered]@{
         schemaVersion = 1
-        createdAtUtc = [DateTime]::UtcNow.ToString('o')
         source = 'CODEX_HOME or %USERPROFILE%\\.codex'
         included = @('skills (excluding .system)', 'config.toml (redacted)', 'AGENTS.md', 'hooks', 'rules', 'prompts')
         excluded = @('authentication', 'sessions', 'memories', 'logs', 'cache', 'plugins cache', '.env files', 'private keys')
