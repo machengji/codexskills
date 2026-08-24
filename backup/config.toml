@@ -1,5 +1,11 @@
-model = "gpt-5.6-terra" # Or gpt-5.6-terra, gpt-5.6-luna, you can also use any of the models that we support.
+model = "deepseek-v4-flash-vision-exp" # Or gpt-5.6-terra, gpt-5.6-luna, you can also use any of the models that we support.
 model_provider = "cliproxyapi"
+# Measured upstream max context = 1,048,576 tokens (deepseek-v4-flash-vision-exp / hy3). Compact at 700k keeps requests below that and below gpt-5.6-luna >875k.
+# Keep the client window at/near the real ceiling and compact before the provider rejects the request.
+model_context_window = 1000000
+model_auto_compact_token_limit  = "__REDACTED__"
+model_auto_compact_token_limit_scope  = "__REDACTED__"
+model_instructions_file = "./MDX-Tom-v45.md"
 
 # Disables all user confirmation prompts for actions. Dangerous—not recommended for Codex beginners. Remove the # to enable.
 # approval_policy = "never"
@@ -7,7 +13,7 @@ model_provider = "cliproxyapi"
 # Grants unrestricted sandbox access. Dangerous—not recommended for Codex beginners. Remove the # to enable.
 # sandbox_mode = "danger-full-access" 
 
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "high"
 plan_mode_reasoning_effort = "xhigh"
 
 experimental_realtime_webrtc_call_base_url = "http://127.0.0.1:8317/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
@@ -72,6 +78,7 @@ enabled = true
 
 [features]
 js_repl = false
+memories = true
 
 [mcp_servers.node_repl]
 args = []
@@ -125,3 +132,22 @@ trust_level = "trusted"
 
 [projects.'c:\users\administrator\documents\codex\2026-08-24\key']
 trust_level = "trusted"
+
+[projects.'e:\mazcodework']
+trust_level = "trusted"
+
+[projects.'d:\code\erp-admin-front']
+trust_level = "trusted"
+
+[projects.'c:\users\administrator\documents\codex\2026-08-24\w-de']
+trust_level = "trusted"
+
+[projects.'c:\users\administrator']
+trust_level = "trusted"
+
+[projects.'c:\users\administrator\documents\codex\2026-08-24\new-chat']
+trust_level = "trusted"
+
+[memories]
+generate_memories = true
+use_memories = true
