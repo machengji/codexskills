@@ -1,29 +1,28 @@
 {
-  "schemaVersion": 1,
-  "createdAtUtc": "2026-08-24T02:57:14.8986526Z",
-  "source": "CODEX_HOME or %USERPROFILE%\\\\.codex",
-  "included": [
-    "skills (excluding .system)",
-    "config.toml (redacted)",
-    "AGENTS.md",
-    "hooks",
-    "rules",
-    "prompts"
-  ],
-  "excluded": [
-    "authentication",
-    "sessions",
-    "memories",
-    "logs",
-    "cache",
-    "plugins cache",
-    ".env files",
-    "private keys"
-  ],
-  "copiedFiles": {
-    "skills": 22,
-    "hooks": 0,
-    "rules": 1,
-    "prompts": 0
-  }
+    "schemaVersion":  1,
+    "source":  "CODEX_HOME or %USERPROFILE%\\\\.codex",
+    "included":  [
+                     "skills (excluding .system)",
+                     "config.toml (redacted)",
+                     "AGENTS.md",
+                     "hooks",
+                     "rules",
+                     "prompts"
+                 ],
+    "excluded":  [
+                     "authentication",
+                     "sessions",
+                     "memories",
+                     "logs",
+                     "cache",
+                     "plugins cache",
+                     ".env files",
+                     "private keys"
+                 ],
+    "copiedFiles":  {
+                        "skills":  22,
+                        "hooks":  0,
+                        "rules":  1,
+                        "prompts":  0
+                    }
 }
