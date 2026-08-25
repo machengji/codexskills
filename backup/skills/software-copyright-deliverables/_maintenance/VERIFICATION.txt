@@ -1,0 +1,42 @@
+SOFTWARE-COPYRIGHT-DELIVERABLES SKILL PATCH VERIFICATION
+
+CHANGED_BRANCH_FIELD:
+- SKILL.md: R23 -> R23-E 首稿自然写作编译（融合公开 humanizer 方法）
+- references/去AI味自然写作编译规范.md: new reference with Chinese natural-writing workflow, two-pass audits, and source links
+- references/manual-template.md: generation pointer now requires the new reference
+
+FOUR_ARTIFACT_PATHS:
+- MODIFIED_FILE=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\SKILL.md
+- DIFF_FILE=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.diff
+- VERIFICATION.txt=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\VERIFICATION.txt
+- ROLLBACK.sh=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\ROLLBACK.sh
+
+PRESERVED_ORIGINAL:
+- ORIGINAL_COPY=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.orig
+- BASELINE_SHA256=6F251218CB8BC2373FB6007600D98253BA52059FC0364DCAB23D16310F004395
+- MODIFIED_SHA256=0A566639331983ED82CB3326A2B40C04FA667D38C84299596A13053A3E1A0531
+- HASH_CHANGED=True
+
+BASELINE_TEST:
+COMMAND: python -c UTF8/no-BOM/R23-D (against SKILL.md.orig)
+INPUT: C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.orig
+LITERAL_OUTPUT: BASELINE_RESULT: PASS; utf8_no_bom=1; R23-D=1; R23-E=0
+EXIT_STATUS: 0
+
+MODIFIED_TEST:
+COMMAND: python -c UTF8/anchors/reference/source-links (against SKILL.md and 去AI味自然写作编译规范.md)
+INPUT: C:\Users\Administrator\.codex\skills\software-copyright-deliverables\SKILL.md; C:\Users\Administrator\.codex\skills\software-copyright-deliverables\references\去AI味自然写作编译规范.md
+LITERAL_OUTPUT: MODIFIED_RESULT: PASS; utf8_no_bom=2; R23-E=1; reference=1; sources=3; workflow=1
+EXIT_STATUS: 0
+
+ROLLBACK_TEST_ON_ANOTHER_COPY:
+COMMAND: C:\Program Files\Git\bin\bash.exe C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\ROLLBACK.sh C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.rollback-test-copy C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.orig
+INPUT: temporary copy of MODIFIED_FILE; backup=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.orig
+LITERAL_OUTPUT: ROLLBACK_OK target=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.rollback-test-copy backup=C:\Users\Administrator\.codex\skills\software-copyright-deliverables\_maintenance\SKILL.md.orig
+RESULT: restored_hash=6F251218CB8BC2373FB6007600D98253BA52059FC0364DCAB23D16310F004395; baseline_hash=6F251218CB8BC2373FB6007600D98253BA52059FC0364DCAB23D16310F004395; equal=True
+EXIT_STATUS: 0
+
+RESTORED_BEHAVIOR_STATUS:
+- rollback test copy restored byte-for-byte to baseline
+- MODIFIED_FILE remains changed and contains R23-E plus the new reference link
+- source reference URLs: Lanqingsong/humanize-writing, ZaynJarvis/ai-writing-humanizer, blader/humanizer

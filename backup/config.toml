@@ -2,8 +2,6 @@ model = "deepseek-v4-flash-vision-exp" # Or gpt-5.6-terra, gpt-5.6-luna, you can
 model_provider = "cliproxyapi"
 # Measured upstream max context = 1,048,576 tokens (deepseek-v4-flash-vision-exp / hy3). Compact at 700k keeps requests below that and below gpt-5.6-luna >875k.
 # Keep the client window at/near the real ceiling and compact before the provider rejects the request.
-model_context_window = 1000000
-model_auto_compact_token_limit  = "__REDACTED__"
 model_auto_compact_token_limit_scope  = "__REDACTED__"
 model_instructions_file = "./MDX-Tom-v45.md"
 
@@ -23,6 +21,10 @@ notify = [ "C:\\Users\\Administrator\\AppData\\Local\\OpenAI\\Codex\\runtimes\\c
 approval_policy = "never"
 approvals_reviewer = "user"
 sandbox_mode = "danger-full-access"
+service_tier = "priority"
+model_catalog_json = "cc-switch-model-catalog.json"
+model_context_window = 1000000
+model_auto_compact_token_limit  = "__REDACTED__"
 [model_providers.cliproxyapi]
 base_url = "http://127.0.0.1:8317/v1"
 experimental_bearer_token  = "__REDACTED__"
@@ -37,12 +39,12 @@ conversationDetailMode = "STEPS_COMMANDS"
 keepRemoteControlAwakeWhilePluggedIn = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-24T02:43:05Z"
+last_updated = "2026-08-25T08:11:52Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.codex\.tmp\bundled-marketplaces\openai-bundled'
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-20T05:41:34Z"
+last_updated = "2026-08-24T12:13:13Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
 
@@ -79,27 +81,6 @@ enabled = true
 [features]
 js_repl = false
 memories = true
-
-[mcp_servers.node_repl]
-args = []
-command = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_repl.exe'
-startup_timeout_sec = 120
-
-[mcp_servers.node_repl.env]
-NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
-NODE_REPL_NODE_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node.exe'
-NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
-CODEX_HOME = 'C:\Users\Administrator\.codex'
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
-SKY_CUA_NATIVE_PIPE = "1"
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-f51284e2-1828-427a-8dd3-8dc76da13db6'
-CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
 
 [shell_environment_policy.set]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
@@ -151,3 +132,32 @@ trust_level = "trusted"
 [memories]
 generate_memories = true
 use_memories = true
+
+[mcp_servers]
+
+[mcp_servers.vision]
+type = "stdio"
+command = "cmd.exe"
+args = ["/c", 'E:\machengji\vision-mcp\run-vision-mcp.cmd']
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl]
+args = []
+command = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_repl.exe'
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
+NODE_REPL_NODE_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node.exe'
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
+CODEX_HOME = 'C:\Users\Administrator\.codex'
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
+SKY_CUA_NATIVE_PIPE = "1"
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-4c44fce7-6d75-4cb5-bf7e-9589b73f27e7'
+CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
