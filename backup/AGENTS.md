@@ -88,3 +88,7 @@ Additional boundary triggers:
 
 BEGIN.
 <!-- CODEX-X:INSTRUCTIONS:END -->
+
+## 图片识别规则
+
+当当前模型（如 DeepSeek 等文本模型）返回 `this model does not support image input` 或类似不支持图片输入的错误时，立即切换到 `gemma4:31b` 模型完成图片识别，再把识别结果带回当前会话继续处理。该规则同样适用于 OCR、截图内容分析、图像描述、视觉判断等需要读取图片的任务。

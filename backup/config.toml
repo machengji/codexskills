@@ -1,9 +1,5 @@
-model = "deepseek-v4-flash-vision-exp" # Or gpt-5.6-terra, gpt-5.6-luna, you can also use any of the models that we support.
+model = "deepseek-v4-flash:0731" # Or gpt-5.6-terra, gpt-5.6-luna, you can also use any of the models that we support.
 model_provider = "cliproxyapi"
-# Measured upstream max context = 1,048,576 tokens (deepseek-v4-flash-vision-exp / hy3). Compact at 700k keeps requests below that and below gpt-5.6-luna >875k.
-# Keep the client window at/near the real ceiling and compact before the provider rejects the request.
-model_auto_compact_token_limit_scope  = "__REDACTED__"
-model_instructions_file = "./MDX-Tom-v45.md"
 
 # Disables all user confirmation prompts for actions. Dangerous—not recommended for Codex beginners. Remove the # to enable.
 # approval_policy = "never"
@@ -18,13 +14,7 @@ experimental_realtime_webrtc_call_base_url = "http://127.0.0.1:8317/v1" # Codex 
 experimental_realtime_ws_base_url = "http://127.0.0.1:8317/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
 
 notify = [ "C:\\Users\\Administrator\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1cb4becc994cbb02\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
-approval_policy = "never"
-approvals_reviewer = "user"
-sandbox_mode = "danger-full-access"
 service_tier = "priority"
-model_catalog_json = "cc-switch-model-catalog.json"
-model_context_window = 1000000
-model_auto_compact_token_limit  = "__REDACTED__"
 [model_providers.cliproxyapi]
 base_url = "http://127.0.0.1:8317/v1"
 experimental_bearer_token  = "__REDACTED__"
@@ -35,21 +25,16 @@ supports_websockets = true # Choose whether to enable websockets as needed
 
 [desktop]
 followUpQueueMode = "queue"
-conversationDetailMode = "STEPS_COMMANDS"
-keepRemoteControlAwakeWhilePluggedIn = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-25T08:11:52Z"
+last_updated = "2026-08-26T10:10:06Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.codex\.tmp\bundled-marketplaces\openai-bundled'
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-24T12:13:13Z"
+last_updated = "2026-08-26T01:17:12Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
-
-[windows]
-sandbox = "elevated"
 
 [plugins."browser@openai-bundled"]
 enabled = true
@@ -80,66 +65,10 @@ enabled = true
 
 [features]
 js_repl = false
-memories = true
-
-[shell_environment_policy.set]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
-NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
-
-[projects.'e:\machengji']
-trust_level = "trusted"
-
-[projects.'e:\软']
-trust_level = "trusted"
-
-[projects.'e:\已完成的案例-可做参考']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-20\new-chat']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-20\chatgpt-codex-codex-reconnecting-codex-codex']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-20\chatgpt-codex-codex-reconnecting-codex-codex-2']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-20\b']
-trust_level = "trusted"
-
-[projects.'d:\code\jiwu_shop']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-24\key']
-trust_level = "trusted"
-
-[projects.'e:\mazcodework']
-trust_level = "trusted"
-
-[projects.'d:\code\erp-admin-front']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-24\w-de']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator']
-trust_level = "trusted"
-
-[projects.'c:\users\administrator\documents\codex\2026-08-24\new-chat']
-trust_level = "trusted"
-
-[memories]
-generate_memories = true
-use_memories = true
-
-[mcp_servers]
 
 [mcp_servers.vision]
-type = "stdio"
-command = "cmd.exe"
-args = ["/c", 'E:\machengji\vision-mcp\run-vision-mcp.cmd']
-startup_timeout_sec = 120
+command = 'cmd.exe'
+args = ['/c', 'E:\machengji\vision-mcp\run-vision-mcp.cmd']
 
 [mcp_servers.node_repl]
 args = []
@@ -159,5 +88,22 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunct
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
 BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
 SKY_CUA_NATIVE_PIPE = "1"
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-4c44fce7-6d75-4cb5-bf7e-9589b73f27e7'
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-edd720e8-1941-4923-bcd7-baa76e04cea7'
 CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
+
+[shell_environment_policy.set]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
+
+[windows]
+sandbox = "elevated"
+
+[projects.'e:\软']
+trust_level = "trusted"
+
+[projects.'e:\mazcodework']
+trust_level = "trusted"
+
+[projects.'e:\已完成的案例-可做参考']
+trust_level = "trusted"
