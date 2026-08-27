@@ -1,51 +1,150 @@
-model = "deepseek-v4-flash:0731" # Or gpt-5.6-terra, gpt-5.6-luna, you can also use any of the models that we support.
-model_provider = "cliproxyapi"
+model_provider = "custom"
 
-# Disables all user confirmation prompts for actions. Dangerous—not recommended for Codex beginners. Remove the # to enable.
-# approval_policy = "never"
+model = "deepseek-v4-flash:0731"
 
-# Grants unrestricted sandbox access. Dangerous—not recommended for Codex beginners. Remove the # to enable.
-# sandbox_mode = "danger-full-access" 
+model_reasoning_effort = "ultra"
 
-model_reasoning_effort = "high"
-plan_mode_reasoning_effort = "xhigh"
+model_catalog_json = "cc-switch-model-catalog.json"
 
-experimental_realtime_webrtc_call_base_url = "http://127.0.0.1:8317/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
-experimental_realtime_ws_base_url = "http://127.0.0.1:8317/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
+
+
+disable_response_storage = true
 
 notify = [ "C:\\Users\\Administrator\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1cb4becc994cbb02\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
-service_tier = "priority"
-[model_providers.cliproxyapi]
-base_url = "http://127.0.0.1:8317/v1"
-experimental_bearer_token  = "__REDACTED__"
-name = "OpenAI"
+model_verbosity = "medium"
+model_reasoning_summary = "concise"
+
+[model_providers.custom]
+
+name = "custom"
+
 wire_api = "responses"
+
 requires_openai_auth = true
-supports_websockets = true # Choose whether to enable websockets as needed
+
+base_url = "http://127.0.0.1:19100/v1"
+
+experimental_bearer_token  = "__REDACTED__"
+
+
 
 [desktop]
+
 followUpQueueMode = "queue"
+open-link-in-target-preference = "external-browser"
+show-context-window-usage = true
+
+
+
+[desktop.open-in-target-preferences]
+
+global = "intellij"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-26T10:10:06Z"
+last_updated = "2026-08-27T08:19:37Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.codex\.tmp\bundled-marketplaces\openai-bundled'
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-26T01:17:12Z"
+last_updated = "2026-08-27T10:09:23Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
 
-[plugins."browser@openai-bundled"]
+
+
+[projects.'e:\软']
+
+trust_level = "trusted"
+
+
+
+[windows]
+
+sandbox = "elevated"
+
+
+
+[shell_environment_policy.set]
+
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
+
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
+
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+
+
+
+[mcp_servers]
+
+
+
+[mcp_servers.node_repl]
+
+args = []
+
+command = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_repl.exe'
+
+startup_timeout_sec = 120
+
+
+
+[mcp_servers.node_repl.env]
+
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+
+NODE_REPL_NODE_MODULE_DIRS = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
+
+NODE_REPL_NODE_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node.exe'
+
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
+
+CODEX_HOME = 'C:\Users\Administrator\.codex'
+
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
+
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+
+BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
+
+SKY_CUA_NATIVE_PIPE = "1"
+
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-e3f5e21a-ff88-41b9-b1fb-ce5ce5668f6f'
+
+CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
+
+
+
+[plugins."sites@openai-bundled"]
+
 enabled = true
+
+
+
+[plugins."browser@openai-bundled"]
+
+enabled = true
+
+
 
 [plugins."chrome@openai-bundled"]
+
 enabled = true
+
+
 
 [plugins."computer-use@openai-bundled"]
+
 enabled = true
 
+
+
 [plugins."visualize@openai-bundled"]
+
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
@@ -63,47 +162,143 @@ enabled = true
 [plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
-[features]
-js_repl = false
 
-[mcp_servers.vision]
-command = 'cmd.exe'
-args = ['/c', 'E:\machengji\vision-mcp\run-vision-mcp.cmd']
 
-[mcp_servers.node_repl]
-args = []
-command = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_repl.exe'
-startup_timeout_sec = 120
+[projects.'c:\users\administrator\documents\codex\2026-07-19\nih-5']
 
-[mcp_servers.node_repl.env]
-NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
-NODE_REPL_NODE_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node.exe'
-NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
-CODEX_HOME = 'C:\Users\Administrator\.codex'
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
-SKY_CUA_NATIVE_PIPE = "1"
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-edd720e8-1941-4923-bcd7-baa76e04cea7'
-CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
-
-[shell_environment_policy.set]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e172ec9f458f2e636fc69a1b8c68c217f6bb8d10c41f70a05a0878b73863701"
-NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\Administrator\.codex;C:\Users\Administrator\AppData\Local\OpenAI\Codex\runtimes\cua_node\1cb4becc994cbb02\bin\node_modules'
-
-[windows]
-sandbox = "elevated"
-
-[projects.'e:\软']
 trust_level = "trusted"
 
-[projects.'e:\mazcodework']
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\nih-6']
+
 trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\nih-7']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\e']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\ca']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\e-2']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\nih-8']
+
+trust_level = "trusted"
+
+
+
+[projects.'e:\machengji']
+
+trust_level = "trusted"
+
+
 
 [projects.'e:\已完成的案例-可做参考']
+
 trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\new-chat']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-19\kan']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-20\ba']
+
+trust_level = "trusted"
+
+
+
+[projects.'d:\code\mall-erp']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\documents\codex\2026-07-20\ban']
+
+trust_level = "trusted"
+
+
+
+[projects.'d:\code']
+
+trust_level = "trusted"
+
+
+
+[projects.'c:\users\administrator\desktop\sub2api_0.1.162_windows_amd64']
+
+trust_level = "trusted"
+
+[projects.'c:\users\administrator\documents\codex\2026-08-27\new-chat']
+trust_level = "trusted"
+
+
+
+[features]
+
+js_repl = false
+
+memories = true
+
+# 图片识别：已由 agent-vision 本地代理（127.0.0.1:19100）接管，粘贴图片自动转文字；
+
+# 旧 UserPromptSubmit 钩子已停用（避免与代理重复识别），需要时按 vision-analyze 技能跑 CLI。
+
+# [[hooks.UserPromptSubmit]]
+# [[hooks.UserPromptSubmit.hooks]]
+# type = "command"
+# command = 'D:\Programs\nvm\nodejs\node.exe "E:\machengji\vision-mcp\user-prompt-vision-hook.mjs"'
+# timeout = 300
+# statusMessage = "自动图片识别中"
+# additionalContextLimit = 30000
+
+
+
+# agent-vision 本地代理已启用：base_url 指向 http://127.0.0.1:19100/v1（见 [model_providers.custom]）
+
+# [[hooks.SessionStart]]
+
+# [[hooks.SessionStart.hooks]]
+
+# type = "command"
+
+# command = 'powershell -ExecutionPolicy Bypass -File "E:\machengji\vision-mcp\start-deepseek-vision-proxy.ps1"'
+
+# timeout = 60
+
+
+
+[memories]
+
+generate_memories = true
+
+use_memories = true
