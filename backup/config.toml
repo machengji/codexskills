@@ -6,6 +6,10 @@ model_reasoning_effort = "ultra"
 
 model_catalog_json = "cc-switch-model-catalog.json"
 
+model_context_window = 1000000
+model_auto_compact_token_limit  = "__REDACTED__"
+model_auto_compact_token_limit_scope  = "__REDACTED__"
+
 
 
 disable_response_storage = true
@@ -33,6 +37,7 @@ experimental_bearer_token  = "__REDACTED__"
 followUpQueueMode = "queue"
 open-link-in-target-preference = "external-browser"
 show-context-window-usage = true
+localeOverride = "zh-CN"
 
 
 
@@ -41,7 +46,7 @@ show-context-window-usage = true
 global = "intellij"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-27T08:19:37Z"
+last_updated = "2026-08-28T08:48:20Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.codex\.tmp\bundled-marketplaces\openai-bundled'
 
@@ -113,7 +118,7 @@ BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
 
 SKY_CUA_NATIVE_PIPE = "1"
 
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-e3f5e21a-ff88-41b9-b1fb-ce5ce5668f6f'
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-478da322-b7fc-4308-b4b0-614d61a88ba5'
 
 CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
 
@@ -259,6 +264,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects.'c:\users\administrator\documents\codex\2026-08-27\new-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\administrator\documents\codex\2026-08-27\new-chat-2']
 trust_level = "trusted"
 
 

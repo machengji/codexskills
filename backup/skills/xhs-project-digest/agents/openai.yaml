@@ -1,0 +1,8 @@
+interface:
+  display_name: "小红书项目筛选发布"
+  short_description: "筛选项目并融合成好看、合规的小红书笔记"
+  brand_color: "#F43F5E"
+  default_prompt: "使用 $xhs-project-digest 按融合流程，把今天的项目筛选总结成可发布的小红书笔记；需要时再用 $xiaohongshu-post-writer 做去AI味和合规润色。"
+
+policy:
+  allow_implicit_invocation: true

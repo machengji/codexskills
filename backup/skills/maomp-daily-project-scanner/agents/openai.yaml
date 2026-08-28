@@ -1,0 +1,8 @@
+interface:
+  display_name: "冒泡网每日项目扫描"
+  short_description: "每日筛选冒泡网可行创业项目"
+  brand_color: "#0F766E"
+  default_prompt: "使用 $maomp-daily-project-scanner 检测冒泡网今天有没有可验证的创业赚钱项目，并给出中文推荐与7天验证计划。"
+
+policy:
+  allow_implicit_invocation: true

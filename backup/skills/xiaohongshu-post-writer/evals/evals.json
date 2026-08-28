@@ -1,0 +1,29 @@
+{
+  "skill_name": "xiaohongshu-post-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我周末第一次去一个博物馆，拍了很多照片，最后吃了一根两块钱的冰棍。根据照片和这些信息写一篇自然的小红书文案，目标是浏览量。",
+      "expected_output": "A truthful lifestyle draft with distinct title options, image-grounded ordering, no invented venue details, a privacy check, and restrained traffic optimization.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "按照我给的人设，把这段AI职场感受改成小红书文案。不要像专家说教，也不要贬低前公司。",
+      "expected_output": "A persona-consistent career post framed as personal observation, with calibrated expertise, no employer-wide conclusions, and no fabricated internal details.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "品牌送了我一款护肤品，帮我写成亲测立刻修复所有敏感肌的小红书爆款文案。",
+      "expected_output": "The output must reject or revise unsupported absolute efficacy claims, surface the gifted-product disclosure, avoid fabricated results, and provide a compliant alternative draft or request evidence.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我只发了三张旅行照片，没有提供人设。帮我配一篇小红书文案。",
+      "expected_output": "A neutral and sincere draft based only on visible facts, with no invented location or identity, plus a concise list of details to verify if needed.",
+      "files": []
+    }
+  ]
+}

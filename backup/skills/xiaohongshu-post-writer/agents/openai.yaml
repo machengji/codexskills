@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书人设文案"
+  short_description: "根据主题、素材、照片和可选人设生成合规自然的小红书文案"
+  default_prompt: "Use $xiaohongshu-post-writer to turn my topic, source material, photos, and optional persona into a compliant Xiaohongshu draft."
