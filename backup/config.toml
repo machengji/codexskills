@@ -1,6 +1,6 @@
 model_provider = "custom"
 
-model = "deepseek-v4-flash:0731"
+model = "deepseek-v4-flash-0731"
 
 model_reasoning_effort = "ultra"
 
@@ -267,6 +267,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects.'c:\users\administrator\documents\codex\2026-08-27\new-chat-2']
+trust_level = "trusted"
+
+[projects.'e:\已完成的案例']
 trust_level = "trusted"
 
 

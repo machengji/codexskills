@@ -2,7 +2,7 @@
 name: software-copyright-deliverables
 description: 生成中国版权保护中心软著申报交付件（申请表、真实源码代码文档、操作手册 Word（不产出 PDF）），并整理为「项目根文档 + [软件全称]-源代码/」。独立负责软著交付；若项目来自 vertical-image-system-builder，须先核对名称编译、登录页与全页自主创新、运行验收、手册去AI味、研发留痕、差异化编译单与截图真实性。禁止跨项目模板化、批量换词、复制已登记材料改名；手册须去AI味并引用研发留痕。代码 Word 用真实不重复源码，后端/API、领域服务、规则引擎、状态机、数据处理与算法代码合计至少占代码文档实质源码的60%，前部优先展示；Word/WPS 实测至少66页且空行/硬分页为0；代码 Word 与操作手册 Word 按 Word/WPS 实测页数验收；最终交付不产出 PDF。操作手册第1页纯文字，实测51–60页；同组截图必须体现真实操作和可见状态变化，不能只是同屏近似图。用户提到软著、著作权、版权申请、交付件、代码页数、后端算法、PDF、WPS、手册页数、目录、流程截图、补正、独创性、去AI味、研发留痕、差异化、整理目录时触发。输入项目路径和软件名称即可生成；生成期可用临时代码 TXT 做同源校验，但最终交付根目录只保留申请表 TXT、代码 DOCX、手册 DOCX 与源代码目录（不产出 PDF）。
 ---
-> **已合并**：本技能已与 `vertical-image-system-builder` 合并为新的独立技能 `soft-copyright-manual-builder`（`C:\Users\Administrator\.codex\skills\soft-copyright-manual-builder`）。新技能负责整条链路：垂直系统生成 → 真实运行验收 → 状态链多态截图 → 软著三件套 → 目录收敛（不产出 PDF）。新做或返工请优先使用新技能；本目录保留作为旧版参考。
+> **已合并**：本技能已与 `vertical-image-system-builder` 合并为新的独立技能 `soft-copyright-manual-builder`（`C:\Users\Administrator\.zcode\skills\soft-copyright-manual-builder`，ZCode 本机版；Codex 侧同源副本在 `.codex\skills\` 下）。新技能负责整条链路：垂直系统生成 → 真实运行验收 → 状态链多态截图 → 软著三件套 → 目录收敛（不产出 PDF）。新做或返工请优先使用新技能；本目录保留作为旧版参考。
 
 
 > **技能定位（旧版）**：本目录是旧版软著交付技能，已与 `vertical-image-system-builder` 合并为 `soft-copyright-manual-builder`。新技能负责整条链路：垂直系统生成 → 真实运行验收 → 状态链多态截图 → 软著三件套 → 目录收敛（不产出 PDF）。新做或返工请优先使用新技能；本目录保留作为旧版参考。

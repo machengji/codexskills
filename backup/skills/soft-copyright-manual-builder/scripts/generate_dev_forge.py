@@ -8,6 +8,8 @@ Optional: copyright owner, base version, project root.
 Usage:
   python generate_dev_forge.py --project . --name "软件全称" --team "研发组,测试组"
   python generate_dev_forge.py --project . --name "软件全称" --team "张三,李四,王五" --owner "某某科技"
+  # 留档收进 [软件全称]-源代码/：用 --dir-name 指定源代码目录内的留档子目录
+  python generate_dev_forge.py --project . --name "软件全称" --team "研发组,测试组" --dir-name "<软件全称>-源代码/<留档子目录名>"
 """
 
 from __future__ import annotations
@@ -213,7 +215,7 @@ def _write(path: Path, content: str) -> None:
 
 
 # 反模板化硬门禁：目录名与文件名由软件全称稳定编译，禁止连续两案复用同一套固定名。
-# 本脚本只生成“骨架”，交付前必须按本案业务重新审读并登记到 variation-manifest。
+# 本脚本只生成“骨架”，交付前必须按本案业务重新审读；留档目录按技能要求收进 [软件全称]-源代码/ 内（用 --dir-name 指定子目录），不单独占用交付根目录。
 _FORGE_DIR_POOL = [
     "研发留痕", "工程档案", "项目留档", "开发足迹", "过程档案",
     "建设记录", "工程台账", "迭代档案", "开发纪要", "版本档案",
