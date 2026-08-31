@@ -1,10 +1,10 @@
 model_provider = "custom"
 
-model = "deepseek-v4-flash-0731"
+model = "deepseek-v4-flash:0731"
 
 model_reasoning_effort = "ultra"
 
-model_catalog_json = "cc-switch-model-catalog.json"
+model_catalog_json = "C:\\Users\\Administrator\\.codex\\cc-switch-model-catalog.json"
 
 model_context_window = 1000000
 model_auto_compact_token_limit  = "__REDACTED__"
@@ -26,7 +26,7 @@ wire_api = "responses"
 
 requires_openai_auth = true
 
-base_url = "http://127.0.0.1:19100/v1"
+base_url = "http://127.0.0.1:8090/v1"
 
 experimental_bearer_token  = "__REDACTED__"
 
@@ -46,7 +46,7 @@ localeOverride = "zh-CN"
 global = "intellij"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-28T08:48:20Z"
+last_updated = "2026-08-31T06:27:27Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.codex\.tmp\bundled-marketplaces\openai-bundled'
 
@@ -118,7 +118,7 @@ BROWSER_USE_CODEX_APP_VERSION = "26.810.52044"
 
 SKY_CUA_NATIVE_PIPE = "1"
 
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-478da322-b7fc-4308-b4b0-614d61a88ba5'
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-14a6c291-62e7-4aab-a84c-f57172d4da5f'
 
 CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\e305f1c75d8da435\codex.exe'
 
@@ -272,6 +272,9 @@ trust_level = "trusted"
 [projects.'e:\已完成的案例']
 trust_level = "trusted"
 
+[projects.'c:\users\administrator\documents\codex\2026-08-31\za']
+trust_level = "trusted"
+
 
 
 [features]
@@ -313,3 +316,21 @@ memories = true
 generate_memories = true
 
 use_memories = true
+
+
+[model_providers.vision_bridge]
+
+name = "vision-bridge"
+
+base_url = "http://127.0.0.1:8090/v1"
+
+wire_api = "responses"
+
+experimental_bearer_token  = "__REDACTED__"
+
+
+[profiles.vision-bridge]
+
+model = "deepseek-v4-flash:0731"
+
+model_provider = "vision_bridge"
