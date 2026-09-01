@@ -3,13 +3,13 @@ param(
     [string]$DocxPath,
     [Parameter(Mandatory = $true)]
     [string]$TxtPath,
-    [int]$MinimumPages = 66,
+    [int]$MinimumPages = 70,
     [ValidateRange(0, 2147483647)]
     [int]$BackendSourceLines = 0,
     [ValidateRange(0, 2147483647)]
     [int]$TotalSourceLines = 0,
     [ValidateRange(1, 100)]
-    [int]$MinimumBackendRatioPercent = 60
+    [int]$MinimumBackendRatioPercent = 85
 )
 $ErrorActionPreference = 'Stop'
 $DocxPath = [System.IO.Path]::GetFullPath($DocxPath)
@@ -72,11 +72,13 @@ $txtLines = [System.IO.File]::ReadAllLines($TxtPath, $utf8)
 $blankTxtLines = @($txtLines | Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count
 $archiveHeaders = @($txtLines | Where-Object { $_.StartsWith('// 文件归档:') })
 $uniqueArchiveHeaders = @($archiveHeaders | Sort-Object -Unique)
+$frontendStyleStructureHeaders = @($archiveHeaders | Where-Object { $_ -match $frontendStyleStructurePattern })
 $duplicateArchiveHeaders = $archiveHeaders.Count - $uniqueArchiveHeaders.Count
 $detectedTotalSourceLines = 0
 $detectedBackendSourceLines = 0
 $currentIsBackend = $false
 $backendPathPattern = '(?i)(^|[/\\])(backend|server|api|services?|domain|models?|repositories?|persistence|algorithms?|rules?|state|engines?)([/\\]|$)|算法|规则|状态机|领域|服务|模型|仓储|持久化|数据处理'
+$frontendStyleStructurePattern = '(?i)\.(css|scss|sass|less|styl|html?|vue|jsx|tsx)$|(^|[/\\])(styles?|css|scss|less)([/\\]|$)'
 foreach ($line in $txtLines) {
     if ($line.StartsWith('// 文件归档:')) {
         $archivePath = $line.Substring('// 文件归档:'.Length).Trim()
@@ -138,6 +140,7 @@ $result = [ordered]@{
     source_file_headers = $archiveHeaders.Count
     unique_source_file_headers = $uniqueArchiveHeaders.Count
     duplicate_source_file_headers = $duplicateArchiveHeaders
+    frontend_style_structure_headers = $frontendStyleStructureHeaders.Count
     docx_txt_line_count_match = ($paragraphs.Count -eq $txtLines.Count)
 }
 $result.passed = (
@@ -152,6 +155,7 @@ $result.passed = (
     -not $hasBom -and
     $archiveHeaders.Count -gt 0 -and
     $duplicateArchiveHeaders -eq 0 -and
+    $frontendStyleStructureHeaders.Count -eq 0 -and
     $paragraphs.Count -eq $txtLines.Count
 )
 $result | ConvertTo-Json -Depth 4
