@@ -70,7 +70,7 @@ def xml_text(node: ET.Element | None) -> str:
 
 
 class MaompClient:
-    def __init__(self, data_dir: Path, credentials_path: Path | None = None):
+    def __init__(self, data_dir: Path, credentials_path: Path | None = None, no_proxy: bool = False):
         self.data_dir = data_dir
         self.credentials_path = credentials_path or (data_dir / "credentials.json")
         self.cookie_path = data_dir / "cookies.txt"
@@ -80,7 +80,10 @@ class MaompClient:
                 self.cj.load(ignore_discard=True, ignore_expires=True)
             except Exception:
                 self.cj = http.cookiejar.MozillaCookieJar(str(self.cookie_path))
-        self.opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
+        handlers = [urllib.request.HTTPCookieProcessor(self.cj)]
+        if no_proxy:
+            handlers.append(urllib.request.ProxyHandler({}))
+        self.opener = urllib.request.build_opener(*handlers)
         self.opener.addheaders = [
             (
                 "User-Agent",
@@ -434,6 +437,7 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=20)
     parser.add_argument("--force-all", action="store_true")
     parser.add_argument("--no-login", action="store_true")
+    parser.add_argument("--no-proxy", action="store_true", help="bypass system proxy (direct connection)")
     parser.add_argument("--credentials", default="")
     parser.add_argument("--json-out", default="")
     args = parser.parse_args()
@@ -446,7 +450,7 @@ def main() -> int:
     report_dir.mkdir(parents=True, exist_ok=True)
 
     cred_path = Path(args.credentials) if args.credentials else (data_dir / "credentials.json")
-    client = MaompClient(data_dir, credentials_path=cred_path)
+    client = MaompClient(data_dir, credentials_path=cred_path, no_proxy=args.no_proxy)
     logged_in = False
     if not args.no_login:
         logged_in = client.ensure_login()
