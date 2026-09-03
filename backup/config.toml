@@ -113,7 +113,7 @@ NODE_REPL_TRUSTED_SERVICES = '{"browser":"C:/Users/Administrator/.codex/plugins/
 
 SKY_CUA_NATIVE_PIPE = "1"
 
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-508ea927-b02c-4473-a3bd-5d833dba967a'
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-925446ef-3a96-4018-b749-f5a234bca499'
 
 CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\b99306303521e97e\codex.exe'
 
@@ -284,6 +284,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects.'c:\users\administrator\documents\codex\2026-09-01\qu-a']
+trust_level = "trusted"
+
+[projects.'d:\code\erp-admin-front']
 trust_level = "trusted"
 
 
