@@ -30,11 +30,21 @@ function Read-ZipEntryText {
 $zip = [System.IO.Compression.ZipFile]::OpenRead($DocxPath)
 try {
     [xml]$documentXml = Read-ZipEntryText -Zip $zip -EntryName 'word/document.xml'
+    $headerFooterEntries = @($zip.Entries | Where-Object { $_.FullName -match '^word/(header|footer)[0-9]*\.xml$' })
+    $headerFooterText = ''
+    foreach ($entry in $headerFooterEntries) {
+        $stream = $entry.Open()
+        try {
+            $reader = [System.IO.StreamReader]::new($stream, [System.Text.UTF8Encoding]::new($false, $true), $true)
+            try { $headerFooterText += $reader.ReadToEnd() } finally { $reader.Dispose() }
+        } finally { $stream.Dispose() }
+    }
 } finally {
     $zip.Dispose()
 }
 $ns = [System.Xml.XmlNamespaceManager]::new($documentXml.NameTable)
 $ns.AddNamespace('w', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main')
+$pageNumberFields = $documentXml.SelectNodes('//*[contains(@w:instr, "PAGE") or contains(@w:instr, "NUMPAGES")]', $ns).Count
 $paragraphs = $documentXml.SelectNodes('//w:body/w:p', $ns)
 $blankParagraphs = 0
 $hardPageBreaks = 0
@@ -76,17 +86,14 @@ $archiveHeaders = @($txtLines | Where-Object { $_.StartsWith('// 文件归档:')
 $uniqueArchiveHeaders = @($archiveHeaders | Sort-Object -Unique)
 $frontendStyleStructureHeaders = @($archiveHeaders | Where-Object { $_ -match $frontendStyleStructurePattern })
 $duplicateArchiveHeaders = $archiveHeaders.Count - $uniqueArchiveHeaders.Count
+$forbiddenArchiveHeaders = $archiveHeaders.Count
 $detectedTotalSourceLines = 0
 $detectedBackendSourceLines = 0
 $currentIsBackend = $false
 $backendPathPattern = '(?i)(^|[/\\])(backend|server|api|services?|domain|models?|repositories?|persistence|algorithms?|rules?|state|engines?)([/\\]|$)|算法|规则|状态机|领域|服务|模型|仓储|持久化|数据处理'
 $frontendStyleStructurePattern = '(?i)\.(css|scss|sass|less|styl|html?|vue|jsx|tsx)$|(^|[/\\])(styles?|css|scss|less)([/\\]|$)'
 foreach ($line in $txtLines) {
-    if ($line.StartsWith('// 文件归档:')) {
-        $archivePath = $line.Substring('// 文件归档:'.Length).Trim()
-        $currentIsBackend = $archivePath -match $backendPathPattern
-        continue
-    }
+    if ($line.StartsWith('// 文件归档:')) { continue }
     if ([string]::IsNullOrWhiteSpace($line)) { continue }
     $detectedTotalSourceLines++
     if ($currentIsBackend) { $detectedBackendSourceLines++ }
@@ -143,6 +150,10 @@ $result = [ordered]@{
     unique_source_file_headers = $uniqueArchiveHeaders.Count
     duplicate_source_file_headers = $duplicateArchiveHeaders
     frontend_style_structure_headers = $frontendStyleStructureHeaders.Count
+    forbidden_archive_headers = $forbiddenArchiveHeaders
+    header_footer_entries = $headerFooterEntries.Count
+    header_footer_text = $headerFooterText
+    page_number_fields = $pageNumberFields
     docx_txt_line_count_match = ($paragraphs.Count -eq $txtLines.Count)
 }
 $result.passed = (
@@ -155,9 +166,12 @@ $result.passed = (
     $fontViolations -eq 0 -and
     $blankTxtLines -eq 0 -and
     -not $hasBom -and
-    $archiveHeaders.Count -gt 0 -and
+    $forbiddenArchiveHeaders -eq 0 -and
     $duplicateArchiveHeaders -eq 0 -and
     $frontendStyleStructureHeaders.Count -eq 0 -and
+    $headerFooterEntries.Count -eq 0 -and
+    $headerFooterText -notmatch 'PAGE|NUMPAGES|页脚|页码|页眉' -and
+    $pageNumberFields -eq 0 -and
     $paragraphs.Count -eq $txtLines.Count
 )
 $result | ConvertTo-Json -Depth 4

@@ -1,6 +1,6 @@
 model_provider = "custom"
 
-model = "deepseek-v4-flash:0731"
+model = "deepseek-v4-pro中转"
 
 model_reasoning_effort = "ultra"
 
@@ -113,7 +113,7 @@ NODE_REPL_TRUSTED_SERVICES = '{"browser":"C:/Users/Administrator/.codex/plugins/
 
 SKY_CUA_NATIVE_PIPE = "1"
 
-SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-925446ef-3a96-4018-b749-f5a234bca499'
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-6d984bc7-cf2b-4f5d-b698-ba2320203710'
 
 CODEX_CLI_PATH = 'C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\b99306303521e97e\codex.exe'
 
@@ -287,6 +287,12 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects.'d:\code\erp-admin-front']
+trust_level = "trusted"
+
+[projects.'c:\users\administrator\documents\codex\2026-09-04\we']
+trust_level = "trusted"
+
+[projects.'c:\users\administrator\documents\codex\2026-09-04\zh']
 trust_level = "trusted"
 
 
