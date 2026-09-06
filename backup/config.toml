@@ -50,7 +50,6 @@ source_type = "local"
 source = '\\?\C:\Users\Administrator\.codex\.tmp\bundled-marketplaces\openai-bundled'
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-27T10:09:23Z"
 source_type = "local"
 source = '\\?\C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
 
